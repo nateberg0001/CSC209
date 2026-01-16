@@ -12,6 +12,20 @@ to stdout and returns 1.
 
  */
 int main() {
+    char phone[11];
+    int integer;
+    scanf("%10s", phone);
+    scanf("%d", &integer);
+    if (integer == -1) {
+        printf("%s\n", phone);
+    } 
+    else if (integer >= 0 && integer <= 9) {
+        printf("%c\n", phone[integer]);
+    } 
+    else {
+        printf("ERROR\n");
+        return 1;
+    }
     return 0;
 }
 

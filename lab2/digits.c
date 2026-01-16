@@ -12,9 +12,16 @@
  */
 
 int repeated_digits(int *numbers, int length) {
-    // TODO complete the function according to its description
-    // remember to change the return value.
-   return -9;
+    int repeated = 0;
+    int count[10] = {0};
+    for (int i = 0; i < length; i++) {
+        int digit = numbers[i];
+        count[digit]++;
+        if (count[digit] == 2) {
+            repeated++;
+        }    
+    }
+    return repeated;
 }
 
 /* 
@@ -33,7 +40,19 @@ int repeated_digits(int *numbers, int length) {
  * 
  */
 void leave_repeated_digits(int *numbers, int *length) {
-    // TODO complete the function according to its description
+    int curr = 0;
+    int count[10] = {0};
+    int new_length = 0;
+    for (int i = 0; i < *length; i++) {
+        int digit = numbers[i];
+        count[digit]++;
+        if (count[digit] == 2) {
+            numbers[curr] = digit;
+            new_length++;
+            curr++;
+        }    
+    }
+    *length = new_length;
 }
 
 
