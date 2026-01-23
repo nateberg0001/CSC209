@@ -13,8 +13,8 @@
 int **split_array(const int *s, int length) {
     int **arrays;
     arrays = malloc(2*sizeof(int*));
-    arrays[0] = malloc((length+1)/2);
-    arrays[1] = malloc(length/2);
+    arrays[0] = malloc((length+1)/2 *sizeof(int));
+    arrays[1] = malloc(length/2 * sizeof(int));
     for(int i = 0; i< length; i++){
        if(i%2==0){
         arrays[0][i/2]=(s)[i];
