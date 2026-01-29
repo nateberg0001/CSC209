@@ -1,0 +1,40 @@
+4. Game Complete Check
+
+Input is a simple 2x2 grid with one mine, the three safe tiles are selected and the game completes.
+
+Files: test4_input.txt, test4_expected.txt
+
+5. Check functionally with a oblong board
+
+Input is an abnormal 5x1 board. We select two safe tiles then one mine to see if operations still work on the unique dimesion board.
+
+Files: test5_input.txt, test5_expected.txt
+
+6. Check flood fill on a two tricky fills
+
+Input is a large 6x6 board with two disjoint sections of adjacent "zero" tiles. We select one tile in each section to see if the neighbouring
+"zero" tile is also revealed.
+
+Files: test6_input.txt, test6_expected.txt
+
+7. Many Mines Number Checks
+
+Input is a 4x4 with many mines. All safe tiles are selected and verify if they correctly display the right number to reflect
+the adjacent number of mines.
+
+Files: test7_input.txt, test7_expected.txt
+
+8. Attempting to Mine Already Visible Cell
+
+Input is a 2x3 with a single mine. The tile at "0,0" is selected 5 times. The tile at "1,2" is selected even though it visible from
+a previous flood fill. This checks if these repeated selections are handled correctly by the program.
+
+Files: test8_input.txt, test8_expected.txt
+
+9. All Mines
+
+Input is a 1x1 with a single mine. The first selection is "0,0". This checks the game ends immediately instead of Attempting
+the first move.
+
+Files: test9_input.txt, test9_expected.txt
+

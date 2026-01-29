@@ -158,7 +158,7 @@ int check_game_over(int board[][MAX_SIZE], int visible[][MAX_SIZE],
             if(board[i][j]==-1 && visible[i][j]==1){
                 return -1;
             }
-            if(board[i][j] != 1 && visible[i][j]==0){
+            if(board[i][j] != -1 && visible[i][j]==0){
                 status=0;
             }
         }
