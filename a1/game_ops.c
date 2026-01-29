@@ -19,10 +19,8 @@
  * not read any moves.
  */
 void read_board(FILE *fp, int board[][MAX_SIZE], int *rows, int *cols) {
-    // TODO: Read rows and cols from first line
     fscanf(fp,"%d",rows);
     fscanf(fp,"%d",cols);
-    // TODO: Read the board values into the 2D array board
     for(int i = 0; i < *rows; i++){
         for(int j=0; j< *cols; j++){
             fscanf(fp,"%d",&board[i][j]);
@@ -80,8 +78,6 @@ void calculate_numbers(int board[][MAX_SIZE], int rows, int cols) {
  */
 void flood_fill(int board[][MAX_SIZE], int visible[][MAX_SIZE],
                 int rows, int cols, int row, int col) {
-
-    // TODO: Implement this function
     int squares[8][2]={{-1,-1},{-1,0},{-1,1},{0,-1},{0,1},{1,-1},{1,0},{1,1}};
     for(int k=0; k<8; k++){
         int curr[2] = {row+squares[k][0],col+squares[k][1]};
@@ -123,7 +119,6 @@ void reveal_cell(int board[][MAX_SIZE], int visible[][MAX_SIZE],
  */
 void print_board(int board[][MAX_SIZE], int visible[][MAX_SIZE], 
                  int rows, int cols) {
-    // TODO: Implement this function
     for(int i = 0; i < rows; i++){
         for(int j=0; j< cols; j++){
             if(visible[i][j]==0){
