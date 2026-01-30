@@ -21,8 +21,26 @@
  * level program with the same name.
  */
 
-
-
+char* basename_inplace(char* input){
+    int last_slash = -1;
+    int index = 0;
+    while(input[index+1]!='\0'){
+        if(input[index]=='/'){
+            last_slash = index;
+        }
+        index++;
+    }
+    if(last_slash==-1){
+        return input;
+    }
+    index = 1;
+    while(input[last_slash+index]!='\0'){
+        input[index-1]=input[last_slash+index];
+        index++;
+    }
+    input[index-1]=input[last_slash+index];
+    return input;
+}
 
 int main(int argc, char **argv) {
 
