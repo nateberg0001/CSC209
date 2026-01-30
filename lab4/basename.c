@@ -22,17 +22,34 @@
  */
 
 char* basename_inplace(char* input){
+    // base cases
+    if(input == NULL || input[0]=='\0'){
+        return ".";
+    }
+    if(input[0]=='/' && input[1]=='\0'){
+        return "/";
+    }
+    // find last_slash
     int last_slash = -1;
+    int slast_slash = -1;
     int index = 0;
-    while(input[index+1]!='\0'){
+    while(input[index]!='\0'){
         if(input[index]=='/'){
+            slast_slash=last_slash;
             last_slash = index;
         }
         index++;
     }
+    // if no slashes then return whole string
     if(last_slash==-1){
         return input;
     }
+    // if last_slash is at the end, it is "trailing", and doesn't count
+    if(input[last_slash+1]=='\0'){
+        input[last_slash]='\0';
+        last_slash=slast_slash;
+    }
+    // reassign important part to beginning of string
     index = 1;
     while(input[last_slash+index]!='\0'){
         input[index-1]=input[last_slash+index];
