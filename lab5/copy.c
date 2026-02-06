@@ -13,8 +13,20 @@
  */
 
 char *copy(char *dest, const char *src, int capacity) {
-
-
+    int length = 0;
+    while(src[length]!='\0'){
+        length++;
+    }
+    if(length >= capacity){
+        length = capacity - 1;
+        dest[capacity-1]='\0';
+    }
+    else{
+        dest[length]='\0';
+    }
+    for(int i = 0; i < length; i++){
+        dest[i]=src[i];
+    }
     return dest;
 }
 
