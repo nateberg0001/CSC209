@@ -40,6 +40,10 @@ int main(int argc, char **argv) {
     }
 
     // TODO: Clean up so that valgrind reports no memory is still in use
+    for(int j = 0; j<height; j++){
+        free(pixels[j]);
+    }
+    free(pixels);
 
     return 0;
 }
