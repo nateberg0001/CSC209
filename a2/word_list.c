@@ -12,33 +12,26 @@
    Note: Do not make copies of the words.
 */
 char **prune_word_list(char **word_list, int len) {
-    // TODO: complete this function, replacing the return statement
     int count = 0;
     int i = 0;
     while(word_list[i]!=NULL){
         if(strlen(word_list[i])==len){
-            if(count==0){
-                printf("word is %s \n", word_list[i]);
-                printf("word length however is %ld", strlen(word_list[i]));
-                for (int j = 0; word_list[i][j] != '\0'; j++) {
-                    printf("%d ", word_list[i][j]);
-                }
-                printf("\n");
-            }
             count++;
         }
         i++;
     }
-    char **new_wordlist = malloc(sizeof(char*)*count);
-    count = 0;
+    char **new_wordlist = malloc(sizeof(char*)*(count+1));
+    new_wordlist[0]=NULL;
+    int new_count = 0;
     i = 0;
     while(word_list[i]!=NULL){
         if(strlen(word_list[i])==len){
-            new_wordlist[count]=word_list[i];
-            count++;
+            new_wordlist[new_count]=word_list[i];
+            new_count++;
         }
         i++;
     }
+    new_wordlist[count]=NULL;
     return new_wordlist;
 }
 
@@ -46,5 +39,10 @@ char **prune_word_list(char **word_list, int len) {
 /* Free memory acquired by prune_word_list.
 */
 void deallocate_pruned_word_list(char **word_list) {
+    int i = 0;
+    while(word_list[i]!=NULL){
+        free(word_list[i]);
+        i++;
+    }
     free(word_list);
 }

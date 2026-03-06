@@ -90,9 +90,9 @@ void add_word_to_family(Family *fam, char *word) {
         i++;
     }
     fam->num_words++;
-    fam->word_ptrs[i]=word;
+    fam->word_ptrs[i] = malloc(strlen(word) + 1);
+    strcpy(fam->word_ptrs[i], word);
     if(fam->num_words >= fam->max_words){
-        printf("reallocating!!! num_words is %d \n", fam->num_words);
         fam->word_ptrs = realloc(fam->word_ptrs,sizeof(char*)*(family_increment+fam->max_words));
         fam->max_words = fam->max_words + family_increment;
         for(int j=i+1;j<fam->max_words;j++){
@@ -139,10 +139,16 @@ Family *find_biggest_family(Family *fam_list){
 
 /* Deallocate all memory rooted in the List pointed to by fam_list. */
 void deallocate_families(Family *fam_list) {
+   Family *next;
     while(fam_list!=NULL){
-        free(fam_list->word_ptrs);
+	next = fam_list -> next;
+   	for (int i = 0; i < fam_list->num_words; i++) {
+            free(fam_list->word_ptrs[i]);
+        }
+   	free(fam_list->word_ptrs);
         free(fam_list->signature);
-        fam_list=fam_list->next;
+   	free(fam_list);
+	fam_list = next;
     }
     return;
 }
@@ -158,7 +164,6 @@ void deallocate_families(Family *fam_list) {
 Family *generate_families(char **word_list, char letter) {
     // Generate signatures
     int len = strlen(word_list[0]);
-    printf("size is %d", len);
     char** sigs = malloc(sizeof(char*)*(500));
     for(int i = 0; i<500; i++){
         sigs[i]=NULL;
@@ -198,12 +203,11 @@ Family *generate_families(char **word_list, char letter) {
     }
 
     // Memory Cleanup
-    while(sigs[k]!=NULL){
-        free(sigs[k]);
-        k++;
+    for(int n = 0; n < 500 && sigs[n] != NULL; n++){
+    	free(sigs[n]);
     }
     free(sigs);
-
+    
     return head_family;
 }
 
